@@ -1,0 +1,9 @@
+test_foreign_manifest_rejected_before_mutation (__main__.WestBootstrapTests.test_foreign_manifest_rejected_before_mutation) ... ok
+test_missing_import_then_update (__main__.WestBootstrapTests.test_missing_import_then_update) ... ok
+test_repeated_initialization_preserves_config (__main__.WestBootstrapTests.test_repeated_initialization_preserves_config) ... ok
+test_unknown_option_does_not_initialize (__main__.WestBootstrapTests.test_unknown_option_does_not_initialize) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 9.096s
+
+OK

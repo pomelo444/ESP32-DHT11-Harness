@@ -1,0 +1,95 @@
+{
+  "run_url": "https://github.com/pomelo444/ESP32-DHT11-Harness/actions/runs/41058064524",
+  "state": "success",
+  "jobs": [
+    {
+      "url": "https://github.com/pomelo444/ESP32-DHT11-Harness/actions/runs/41058064524/job/124070507104",
+      "name": "Host JSON / Python tests",
+      "status": "completed successfully"
+    },
+    {
+      "url": "https://github.com/pomelo444/ESP32-DHT11-Harness/actions/runs/41058064524/job/124070653158",
+      "name": "ESP32 Zephyr cross compilation",
+      "status": "completed successfully"
+    }
+  ],
+  "head_sha": "8e51c0f3f03fa6367645551c3a942048aa4ab9cd",
+  "observed_at": "2026-10-30T20:50:40.813554+08:00",
+  "source": "Public GitHub run and job pages; API is blocked, full remote log text requires GitHub sign-in",
+  "firmware_steps": [
+    {
+      "name": "Set up job",
+      "number": "1",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+      "number": "2",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+      "number": "3",
+      "conclusion": "success"
+    },
+    {
+      "name": "Install Linux build tools",
+      "number": "4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Test cold West workspace initialization",
+      "number": "5",
+      "conclusion": "success"
+    },
+    {
+      "name": "Set up pinned Zephyr and ESP32 SDK",
+      "number": "6",
+      "conclusion": "success"
+    },
+    {
+      "name": "Build ESP32 firmware (no flashing)",
+      "number": "7",
+      "conclusion": "success"
+    },
+    {
+      "name": "Upload build evidence",
+      "number": "8",
+      "conclusion": "success"
+    },
+    {
+      "name": "Upload firmware",
+      "number": "9",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+      "number": "17",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+      "number": "18",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "number": "19",
+      "conclusion": "success"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "esp32-build-evidence",
+      "digest": "sha256:323f41e5826cfba4ec6056df6584a4243c2481c105dc1a7e0aa6a5c3828f93dc"
+    },
+    {
+      "name": "esp32-zephyr-firmware",
+      "digest": "sha256:2bbe9cc3bd1b2d69cd2568fde66ac4cbd679c4fc865993793ea8a8324e362a2e"
+    },
+    {
+      "name": "host-test-evidence",
+      "digest": "sha256:f3a4773ca62a198d67bcfce3429c40fdfe1c8e3a62f7c4c47ec680dd6c5ae280"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+Execution: Codex cloud Linux; West initialization fix verification, not a GitHub Actions run
+Target: esp32_devkitc/esp32/procpu
+v4.4.2
+1.0.1
+-- west build: generating a build system
+Loading Zephyr default modules (Zephyr base (cached)).
+-- Application: /workspace/ESP32-DHT11-Harness
+-- CMake version: 4.4.4
+-- Cache files will be written to: /home/agent/.cache/zephyr
+-- Zephyr version: 4.4.2 (/workspace/zephyr)
+-- Found west (found suitable version "1.5.0", minimum required is "0.14.0")
+-- Board: esp32_devkitc, qualifiers: esp32/procpu
+-- Found host-tools: zephyr 1.0.1 (/workspace/.setup/zephyr-sdk-1.0.1)
+-- Found toolchain: zephyr 1.0.1 (/workspace/.setup/zephyr-sdk-1.0.1)
+-- Found BOARD.dts: /workspace/zephyr/boards/espressif/esp32_devkitc/esp32_devkitc_procpu.dts
+-- Found devicetree overlay: /workspace/ESP32-DHT11-Harness/app.overlay
+-- Generated zephyr.dts: /workspace/.build/esp32-dht11/zephyr/zephyr.dts
+-- Generated pickled edt: /workspace/.build/esp32-dht11/zephyr/edt.pickle
+-- Generated devicetree_generated.h: /workspace/.build/esp32-dht11/zephyr/include/generated/zephyr/devicetree_generated.h
+Parsing /workspace/zephyr/Kconfig
+Loaded configuration '/workspace/.build/esp32-dht11/zephyr/.config'
+No change to configuration in '/workspace/.build/esp32-dht11/zephyr/.config'
+No change to Kconfig header in '/workspace/.build/esp32-dht11/zephyr/include/generated/zephyr/autoconf.h'
+-- Espressif HAL path: /workspace/modules/hal/espressif
+-- Image partition address: 0x1000
+-- Found gen_kobject_list: /workspace/zephyr/scripts/build/gen_kobject_list.py
+-- Configuring done (12.5s)
+-- Generating done (0.5s)
+-- Build files have been written to: /workspace/.build/esp32-dht11
+-- west build: building application
+[1/148] Generating include/generated/zephyr/version.h
+-- Zephyr version: 4.4.2 (/workspace/zephyr), build: v4.4.2
+[2/148] Generating misc/generated/syscalls.json, misc/generated/struct_tags.json
+[3/11] Building C object zephyr/kernel/CMakeFiles/kernel.dir/version.c.obj
+[4/11] Generating linker_zephyr_pre0.cmd
+[5/11] Building C object zephyr/kernel/CMakeFiles/kernel.dir/banner.c.obj
+[6/11] Linking C static library zephyr/kernel/libkernel.a
+[7/11] Linking C executable zephyr/zephyr_pre0.elf; Logical command for additional byproducts on target: zephyr_pre0
+[8/11] Generating linker.cmd
+[9/11] Generating isr_tables.c, isr_tables_vt.ld, isr_tables_swi.ld
+[10/11] Building C object zephyr/CMakeFiles/zephyr_final.dir/isr_tables.c.obj
+[11/11] Linking C executable zephyr/zephyr.elf
+Memory region         Used Size  Region Size  %age Used
+           FLASH:      145344 B    4194048 B      3.47%
+     iram0_0_seg:         32 KB       224 KB     14.29%
+     dram0_0_seg:       11968 B       192 KB      6.09%
+     dram1_0_seg:        9408 B        96 KB      9.57%
+     irom0_0_seg:       14272 B     11456 KB      0.12%
+     drom0_0_seg:         64 KB         4 MB      1.56%
+    rtc_iram_seg:           0 B         8 KB      0.00%
+    rtc_slow_seg:          40 B         8 KB      0.49%
+    rtc_data_seg:           0 B         8 KB      0.00%
+        IDT_LIST:           0 B         8 KB      0.00%
+Generating files from /workspace/.build/esp32-dht11/zephyr/zephyr.elf for board: esp32_devkitc/esp32/procpu
+esptool v5.6.0
+Creating ESP32 image...
+Image has only RAM segments visible. ROM segments are hidden and SHA256 digest is not appended.
+Merged 15 ELF sections.
+Successfully created ESP32 image.
+a8c9888dfd06d086c76759dd5e6cb0ef7611ef5b6566e651e1f8b5819366ae29  /workspace/.build/esp32-dht11/zephyr/zephyr.elf
+bfdd2f9e4b3793c73ac3c830b20d80edc883eaad26cb2fead260c81bbd141678  /workspace/.build/esp32-dht11/zephyr/zephyr.bin

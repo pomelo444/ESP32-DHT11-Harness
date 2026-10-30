@@ -1,0 +1,5 @@
+.host-build/
+__pycache__/
+*.py[cod]
+build/
+.venv/

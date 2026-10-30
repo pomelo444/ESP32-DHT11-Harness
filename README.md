@@ -1,4 +1,4 @@
-> **零本地 Zephyr 安装方案**：打开 [ONLINE_NO_INSTALL_GUIDE.md](ONLINE_NO_INSTALL_GUIDE.md)，把本仓库上传 GitHub 后使用 Actions 云端构建。仅主机测试已运行，在线构建尚未运行，硬件测试未运行。
+> **零本地 Zephyr 安装方案**：打开 [ONLINE_NO_INSTALL_GUIDE.md](ONLINE_NO_INSTALL_GUIDE.md)，把本仓库上传 GitHub 后使用 Actions 云端构建。主机测试及 Codex 云环境固件编译已通过；GitHub Actions 主机测试与固件编译已实际通过；硬件测试仍未执行。
 
 # ESP32 + Zephyr RTOS + DHT11 — Anthropic-style Harness Coursework
 
@@ -30,14 +30,17 @@ python scripts/test_host.py
 
 The script compiles the native serializer, runs C assertions, generates 3 clearly **SYNTHETIC** records, executes Python parser tests, saves `evidence/host_synthetic_samples.jsonl`. This is genuine host-only verification. The script does not require pyserial.
 
-## 4. Zephyr build / physical verification (group must execute)
+## 4. Cloud build / physical verification
 
-Set up a working Zephyr 4.x environment (including Zephyr SDK, ESP32 tool dependencies) and connect the target board:
+**Windows 无需安装 Zephyr**：按 [浏览器操作指南](ONLINE_NO_INSTALL_GUIDE.md) 在 GitHub Actions 编译，下载测试日志和固件。工作流位于 `.github/workflows/cloud-check.yml`，Zephyr 固定为 v4.4.2，SDK 版本为 1.0.1。当前 Codex 云环境的实际成功构建记录见 [测试记录](docs/TEST_RECORD.md)；GitHub Actions 实际成功运行见 [41058064524](https://github.com/pomelo444/ESP32-DHT11-Harness/actions/runs/41058064524)。
+
+以下仅供已有 Linux Zephyr 开发环境的同学使用；编译不需要开发板，烧录才需要硬件和所有者批准：
 
 ```sh
 west update
 west blobs fetch hal_espressif
-west build -b esp32_devkitc/esp32/procpu -p always .
+bash scripts/build.sh
+# Only after board checks and owner approval:
 west flash
 ```
 
@@ -70,12 +73,12 @@ On a sensor error, `temperature` and `humidity` become `null`, `status` is `ERRO
 
 - Read `AGENTS.md` -> `PROGRESS.md` -> `features.json` before a new agent session.
 - Do not mark a hardware-related feature as passed on source review alone.
-- Run host tests after every change; run real Zephyr build and capture only on an available board.
+- Run host tests after every change; run Zephyr builds in the cloud; capture real UART only with an available board.
 - Save build evidence and UART logs, then update `features.json`, `PROGRESS.md`, `HANDOFF.md` truthfully. Commit with Git after checking results.
 
 ## 7. Scope boundary
 
-No real ESP32/Zephyr toolchain or DHT11 hardware was connected in the preparation environment. Hardware-related features stay `passes=false`. Do not submit synthetic UART fixture as photographed/real device evidence.
+Zephyr v4.4.2 and SDK 1.0.1 were installed and firmware compilation passed in the Codex cloud environment. No physical ESP32 or DHT11 was connected. F-04 passes with build evidence; F-05–F-07 remain `passes=false`, and F-08 passes with verified GitHub Actions run 41058064524. Do not submit synthetic UART fixture as photographed/real device evidence.
 
 ## 8. References
 
@@ -85,3 +88,9 @@ No real ESP32/Zephyr toolchain or DHT11 hardware was connected in the preparatio
 4. Zephyr Project. *ESP32-DevKitC*. https://docs.zephyrproject.org/latest/boards/espressif/esp32_devkitc/doc/index.html
 5. Zephyr Project. *aosong,dht binding*. https://docs.zephyrproject.org/latest/build/dts/api/bindings/sensor/aosong%2Cdht.html
 6. Zephyr Project. *Message Queues*. https://docs.zephyrproject.org/latest/kernel/services/data_passing/message_queues.html
+
+## 9. 本轮开发与验收
+
+- [中文开发总结](docs/DEVELOPMENT_SUMMARY.md)
+- [中文测试记录](docs/TEST_RECORD.md)（18 项 Python 测试、C 断言与固件构建）
+- [Harness 进度](PROGRESS.md)与[后续交接](HANDOFF.md)

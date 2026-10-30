@@ -1,21 +1,29 @@
 test_bad_field (test_receiver.ReceiverTests.test_bad_field) ... ok
 test_bad_json (test_receiver.ReceiverTests.test_bad_json) ... ok
 test_bad_status_pair (test_receiver.ReceiverTests.test_bad_status_pair) ... ok
+test_cli_negative_count (test_receiver.ReceiverTests.test_cli_negative_count) ... ok
+test_cli_record_count (test_receiver.ReceiverTests.test_cli_record_count) ... ok
+test_duplicate_fields (test_receiver.ReceiverTests.test_duplicate_fields) ... ok
+test_empty_summary (test_receiver.ReceiverTests.test_empty_summary) ... ok
 test_error_contract (test_receiver.ReceiverTests.test_error_contract) ... ok
+test_integer_limits (test_receiver.ReceiverTests.test_integer_limits) ... ok
 test_invalid_bool_seq (test_receiver.ReceiverTests.test_invalid_bool_seq) ... ok
 test_long_record (test_receiver.ReceiverTests.test_long_record) ... ok
+test_nonfinite_and_huge_readings (test_receiver.ReceiverTests.test_nonfinite_and_huge_readings) ... ok
 test_ok (test_receiver.ReceiverTests.test_ok) ... ok
 test_replay_skips_invalid_lines (test_receiver.ReceiverTests.test_replay_skips_invalid_lines) ... SKIP: invalid JSON
 ok
+test_sequence_gap_and_reboot (test_receiver.ReceiverTests.test_sequence_gap_and_reboot) ... ok
 test_summary_intervals (test_receiver.ReceiverTests.test_summary_intervals) ... ok
+test_uint32_wrap (test_receiver.ReceiverTests.test_uint32_wrap) ... ok
 test_wrong_unit (test_receiver.ReceiverTests.test_wrong_unit) ... ok
 
 ----------------------------------------------------------------------
-Ran 10 tests in 0.000s
+Ran 18 tests in 0.257s
 
 OK
 {"device": "ESP32-DHT11", "seq": 1, "uptime_ms": 100, "temperature": 25.6, "temperature_unit": "C", "humidity": 62.0, "humidity_unit": "%RH", "status": "OK", "error_code": 0}
 PASS C serializer unit assertions
 PASS C-to-Python JSON Lines integration (3 SYNTHETIC rows)
-PASS host tests; synthetic fixture saved: /mnt/data/ESP32_DHT11_Harness_Project/evidence/host_synthetic_samples.jsonl
+PASS host tests; synthetic fixture saved: /workspace/ESP32-DHT11-Harness/evidence/host_synthetic_samples.jsonl
 NOT RUN: Zephyr west build, ESP32 flash, live DHT11, live UART

@@ -25,6 +25,17 @@ int main(void)
     assert(strstr(buf, "\"humidity\":62.50") != NULL);
     assert(strstr(buf, "\"humidity_unit\":\"%RH\"") != NULL);
     assert(strstr(buf, "\"status\":\"OK\"") != NULL);
+    /* Exact NUL capacity and one-byte-short capacity, with a canary. */
+    size_t needed = (size_t)n + 1U;
+    char boundary[257];
+    memset(boundary, 'X', sizeof(boundary));
+    assert(json_report_format(boundary, needed, &good) == n);
+    assert(boundary[needed] == 'X');
+    memset(boundary, 'X', sizeof(boundary));
+    assert(json_report_format(boundary, needed - 1U, &good) == -ENOSPC);
+    assert(boundary[0] == '\0');
+    assert(boundary[needed - 1U] == 'X');
+    assert(boundary[needed] == 'X');
 
     n = json_report_format(buf, sizeof(buf), &bad);
     assert(n > 0);
@@ -42,6 +53,15 @@ int main(void)
     bad.error_code = INT32_MIN;
     n = json_report_format(buf, sizeof(buf), &bad);
     assert(n > 0 && strstr(buf, "-2147483648") != NULL);
+    good.seq = UINT32_MAX;
+    good.uptime_ms = UINT32_MAX;
+    good.temperature_milli = INT32_MIN;
+    good.humidity_milli = INT32_MAX;
+    n = json_report_format(buf, sizeof(buf), &good);
+    assert(n > 0);
+    assert(strstr(buf, "\"seq\":4294967295") != NULL);
+    assert(strstr(buf, "\"temperature\":-2147483.65") != NULL);
+    assert(strstr(buf, "\"humidity\":2147483.65") != NULL);
 
     n = json_report_format(tiny, sizeof(tiny), &good);
     assert(n == -ENOSPC && tiny[0] == '\0');

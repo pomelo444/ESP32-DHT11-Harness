@@ -26,3 +26,5 @@ Producer deliberately never blocks on a full queue: `k_msgq_put(..., K_NO_WAIT)`
 Periodic delay is measured after each sensor fetch, so actual sample-to-sample interval is 3000ms plus execution/scheduling overhead; not a hard real-time 3s guarantee.
 
 Hardware wiring must be checked by the group. GPIO18 is a project design choice, not an observed board fact.
+
+The receiver now reports `sequence_ok` separately from timing and handles uint32 uptime/sequence wrap. An empty or incomplete requested replay exits nonzero; a successful replay still does not establish hardware acceptance.

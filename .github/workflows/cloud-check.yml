@@ -1,0 +1,107 @@
+name: ESP32 Zephyr cloud verification
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  host-tests:
+    name: Host JSON / Python tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+      - name: Host tests and synthetic replay
+        run: |
+          set -euo pipefail
+          rm -f evidence/host_test_run.log evidence/offline_replay.log
+          python3 scripts/test_host.py 2>&1 | tee evidence/host_test_run.log
+          python3 scripts/uart_receiver.py --input evidence/host_synthetic_samples.jsonl --count 3 2>&1 | tee evidence/offline_replay.log
+      - name: Upload host evidence (synthetic, no hardware)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: host-test-evidence
+          path: |
+            evidence/host_test_run.log
+            evidence/offline_replay.log
+            evidence/host_synthetic_samples.jsonl
+          retention-days: 14
+
+  firmware:
+    name: ESP32 Zephyr cross compilation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    needs: host-tests
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+      - name: Install Linux build tools
+        run: |
+          rm -f evidence/setup.log evidence/build.log evidence/bootstrap_test.log
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends gcc g++ gperf device-tree-compiler make curl xz-utils
+          python3 -m venv "$RUNNER_TEMP/zephyr-venv"
+          "$RUNNER_TEMP/zephyr-venv/bin/python" -m pip install west==1.5.0 cmake==4.4.4 ninja==1.13.2
+          echo "$RUNNER_TEMP/zephyr-venv/bin" >> "$GITHUB_PATH"
+      - name: Test cold West workspace initialization
+        run: |
+          set -euo pipefail
+          python3 scripts/test_west_bootstrap.py 2>&1 | tee evidence/bootstrap_test.log
+      - name: Set up pinned Zephyr and ESP32 SDK
+        run: |
+          set -euo pipefail
+          bash scripts/setup_zephyr.sh 2>&1 | tee evidence/setup.log
+      - name: Build ESP32 firmware (no flashing)
+        run: |
+          set -euo pipefail
+          {
+            echo "Source commit: $GITHUB_SHA"
+            echo 'Target: esp32_devkitc/esp32/procpu'
+            git -C "$ZEPHYR_BASE" describe --tags --always
+            cat "$ZEPHYR_SDK_INSTALL_DIR/sdk_version"
+            bash scripts/build.sh
+            test -s build/zephyr/zephyr.elf
+            test -s build/zephyr/zephyr.bin
+            sha256sum build/zephyr/zephyr.elf build/zephyr/zephyr.bin
+          } 2>&1 | tee evidence/build.log
+      - name: Upload build evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: esp32-build-evidence
+          path: |
+            evidence/bootstrap_test.log
+            evidence/setup.log
+            evidence/build.log
+          retention-days: 14
+      - name: Upload firmware
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: esp32-zephyr-firmware
+          if-no-files-found: error
+          path: |
+            build/zephyr/zephyr.elf
+            build/zephyr/zephyr.bin
+            build/zephyr/zephyr.dts
+            build/zephyr/.config
+          include-hidden-files: true
+          retention-days: 14
