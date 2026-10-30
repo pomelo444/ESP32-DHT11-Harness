@@ -34,7 +34,7 @@
       "id": "F-03",
       "description": "Python 接收器校验 JSON 字段、单位和错误路径",
       "acceptance": [
-        "10 个 Python 单元测试通过",
+        "18 个 Python 单元测试通过（包括 CLI 失败退出、数值边界与回绕）",
         "主机 C 生成的 3 条模拟 JSONL 可以被 Python 接收"
       ],
       "passes": true,
@@ -51,8 +51,12 @@
         "west build 返回成功",
         "保存构建日志和 Zephyr 版本"
       ],
-      "passes": false,
-      "evidence": []
+      "passes": true,
+      "evidence": [
+        "evidence/build.log",
+        "evidence/setup.log",
+        "docs/TEST_RECORD.md"
+      ]
     },
     {
       "id": "F-05",
@@ -83,6 +87,20 @@
       ],
       "passes": false,
       "evidence": []
+    },
+    {
+      "id": "F-08",
+      "description": "GitHub Actions 托管运行器自动测试和 ESP32 云端构建",
+      "acceptance": [
+        "工作流配置通过静态检查",
+        "在 GitHub Actions 中实际运行成功，保存运行 URL、提交 SHA 和固件产物"
+      ],
+      "passes": false,
+      "evidence": [
+        ".github/workflows/cloud-check.yml",
+        "evidence/workflow_validation.log"
+      ],
+      "note": "配置及脚本已验证；尚未推送或触发 GitHub Actions，不将 Codex 云端构建冒充 GitHub 托管运行结果。"
     }
   ]
 }

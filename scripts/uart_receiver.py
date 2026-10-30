@@ -13,13 +13,22 @@ class RecordError(ValueError):
     pass
 
 
+def unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise RecordError("duplicate field: " + key)
+        result[key] = value
+    return result
+
+
 def parse_record(line):
     if isinstance(line, bytes):
         line = line.decode("utf-8", errors="strict")
     if len(line) > 512:
         raise RecordError("line too long")
     try:
-        data = json.loads(line)
+        data = json.loads(line, object_pairs_hook=unique_object)
     except (ValueError, TypeError) as exc:
         raise RecordError("invalid JSON") from exc
     if not isinstance(data, dict):
@@ -34,18 +43,20 @@ def parse_record(line):
         raise RecordError("unexpected device")
     if data["temperature_unit"] != "C" or data["humidity_unit"] != "%RH":
         raise RecordError("unit mismatch")
-    for field, minimum in (("seq", 1), ("uptime_ms", 0)):
+    for field, minimum in (("seq", 0), ("uptime_ms", 0)):
         value = data[field]
-        if type(value) is not int or value < minimum:
-            raise RecordError(field + " must be an unsigned integer")
-    if type(data["error_code"]) is not int:
-        raise RecordError("error_code must be integer")
+        if type(value) is not int or not minimum <= value <= 0xFFFFFFFF:
+            raise RecordError(field + " must be uint32")
+    if (type(data["error_code"]) is not int or
+            not -(2**31) <= data["error_code"] < 2**31):
+        raise RecordError("error_code must be int32")
     if data["status"] == "OK":
         if data["error_code"] != 0:
             raise RecordError("OK with error_code")
         for field in ("temperature", "humidity"):
             v = data[field]
-            if type(v) not in (int, float) or not math.isfinite(v):
+            if (type(v) not in (int, float) or abs(v) > 2147483.65 or
+                    not math.isfinite(v)):
                 raise RecordError("invalid " + field)
     elif data["status"] == "ERROR":
         if data["error_code"] == 0:
@@ -59,16 +70,19 @@ def parse_record(line):
 
 def summarize(records):
     if not records:
-        return {"total": 0, "ok": 0, "errors": 0, "intervals_ok": None}
-    intervals = [b["uptime_ms"] - a["uptime_ms"]
+        return {"total": 0, "ok": 0, "errors": 0,
+                "intervals_ok": None, "sequence_ok": None}
+    intervals = [(b["uptime_ms"] - a["uptime_ms"]) & 0xFFFFFFFF
                  for a, b in zip(records, records[1:])]
+    sequence_ok = all(b["seq"] == ((a["seq"] + 1) & 0xFFFFFFFF)
+                      for a, b in zip(records, records[1:])) if intervals else None
     # The application uses k_sleep(3000 ms) after sampling: the 500 ms
     # window is a *coursework acceptance tolerance*, not a hard timing guarantee.
     intervals_ok = all(3000 <= diff <= 3500 for diff in intervals) if intervals else None
     return {"total": len(records),
             "ok": sum(x["status"] == "OK" for x in records),
             "errors": sum(x["status"] == "ERROR" for x in records),
-            "intervals_ok": intervals_ok}
+            "intervals_ok": intervals_ok, "sequence_ok": sequence_ok}
 
 
 def receive(lines, output_path=None, limit=0):
@@ -106,6 +120,10 @@ def main():
     parser.add_argument("--count", type=int, default=10)
     parser.add_argument("--out", help="write accepted JSONL to this path")
     args = parser.parse_args()
+    if args.count < 0:
+        parser.error("--count must be nonnegative (0 means unlimited)")
+    if args.baud <= 0:
+        parser.error("--baud must be positive")
 
     if args.input:
         with open(args.input, encoding="utf-8") as stream:
@@ -136,7 +154,11 @@ def main():
         finally:
             ser.close()
     print("SUMMARY:", json.dumps(summarize(rows), ensure_ascii=False))
+    if not rows or (args.count and len(rows) < args.count):
+        print("FAIL: fewer valid records than requested", file=sys.stderr)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

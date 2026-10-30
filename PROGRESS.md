@@ -1,19 +1,26 @@
 # PROGRESS — 2026-10-30
 
-## Current status
-- Completed locally: F-01 (Harness artifacts), F-02 (portable C JSON), F-03 (Python receiver + host contract).
-- Evidence: `evidence/host_test_run.log` (10 Python tests, C assertions), `evidence/host_synthetic_samples.jsonl` (3 synthetic messages), and offline replay.
-- NOT run: `west build`, `west flash`, physical DHT11 readings, actual UART serial capture. West/Zephyr SDK and board are absent in preparation environment.
-- F-04 through F-07 remain `passes=false` until genuinely verified.
+本轮围绕 F-04（ESP32 Zephyr 构建）推进，并按用户要求补齐 Actions 配置与测试回归。
 
-## Next action (on real equipment)
-1. Identify the actual ESP32 module, verify power/ground/DATA GPIO18 and sensor pullup.
-2. Activate Zephyr environment and run `west blobs fetch hal_espressif`, `bash scripts/build.sh`.
-3. Save full build output to `evidence/build.log`, record Zephyr version.
-4. Obtain consent before firmware flashing. Execute `west flash`.
-5. Run Python UART receiver, save 10 real readings to `evidence/uart_capture.jsonl`.
-6. Disconnect sensor signal in a controlled test, save ERROR evidence and update feature status.
+## 已完成且有证据
 
-## Caveats
-- Synthetic host data is **not** hardware evidence. Hardware execution and timing are not assumed successful.
-- Commit to Git after review; zip package is a portable project snapshot, not a Git history.
+- F-01～F-03：Harness 文档、原生 C 序列化、C→Python JSON Lines 集成；本轮 18 个 Python 测试全部通过。
+- F-04：在 Codex Linux 云环境，Zephyr v4.4.2 + SDK 1.0.1 + ESP32 Xtensa GCC 14.3.0 实际编译成功。目标 `esp32_devkitc/esp32/procpu`，ELF/BIN 均已生成，详见 `evidence/build.log`。
+- 代码检查确认两个工作线程、8 槽 `k_msgq`、非阻塞入队、约 3 秒采样和 UART0 115200 JSON Lines；没有改动传感器引脚或线程架构。
+- 修复接收器：记录不足时返回失败；拒绝重复字段、越界整数和非有限读数；按 uint32 回绕检查间隔与序号连续性。
+- 新增 `.github/workflows/cloud-check.yml`；actionlint 和 Bash 语法检查通过。引导脚本和构建脚本在当前云环境实际执行成功。
+
+## 未完成 / 不得视为通过
+
+- F-08：GitHub Actions 尚未实际运行，没有运行 URL；静态检查和 Codex 构建不等于 GitHub 托管执行成功。
+- F-05～F-07：未连接实物、未烧录、未核实接线、未实采 UART、未做断线或队列压力测试，继续 `passes=false`。
+- 采样实现是每次读取后 `k_sleep(3000ms)`，包含读取与调度开销；不是严格实时 3000ms 周期。真实周期仍待测量。
+
+## 下一步
+
+1. 审查提交并推送到 GitHub；PR 或 main/master push 触发 Actions，也可在默认分支手动运行。
+2. 查看两个 Job 的真实结果，保存运行 URL、SHA 和 artifacts，再更新 F-08。
+3. 有板同学核实原版 ESP32 DevKitC、GPIO18、3.3V 和上拉，取得批准后烧录。
+4. 收集至少 10 条真实 UART 记录，检查状态、序号、3000～3500ms 周期，再做受控断线测试，逐项更新 F-05～F-07。
+
+中文总结：`docs/DEVELOPMENT_SUMMARY.md`；测试说明：`docs/TEST_RECORD.md`。所有模拟数据只证明主机协议路径。

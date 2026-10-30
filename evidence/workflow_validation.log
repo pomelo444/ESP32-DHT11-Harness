@@ -1,0 +1,2 @@
+PASS: actionlint v1.7.7, cloud-check.yml
+PASS: bash -n, build/setup/init scripts

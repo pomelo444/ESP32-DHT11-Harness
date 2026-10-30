@@ -1,4 +1,4 @@
 {"device": "ESP32-DHT11", "seq": 1, "uptime_ms": 100, "temperature": 25.6, "temperature_unit": "C", "humidity": 62.0, "humidity_unit": "%RH", "status": "OK", "error_code": 0}
 {"device": "ESP32-DHT11", "seq": 2, "uptime_ms": 3100, "temperature": 25.8, "temperature_unit": "C", "humidity": 61.5, "humidity_unit": "%RH", "status": "OK", "error_code": 0}
 {"device": "ESP32-DHT11", "seq": 3, "uptime_ms": 6100, "temperature": null, "temperature_unit": "C", "humidity": null, "humidity_unit": "%RH", "status": "ERROR", "error_code": -5}
-SUMMARY: {"total": 3, "ok": 2, "errors": 1, "intervals_ok": true}
+SUMMARY: {"total": 3, "ok": 2, "errors": 1, "intervals_ok": true, "sequence_ok": true}

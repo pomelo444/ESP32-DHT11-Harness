@@ -5,4 +5,5 @@ if ! command -v west >/dev/null 2>&1; then
   exit 2
 fi
 cd "$(dirname "$0")/.."
-west build -b esp32_devkitc/esp32/procpu -p always .
+west build --cmake -b esp32_devkitc/esp32/procpu \
+  -d "${BUILD_DIR:-build}" . -o=-j"${BUILD_JOBS:-4}"
