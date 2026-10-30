@@ -26,4 +26,8 @@
 
 沿用项目的 initializer/coding-agent 入口、`features.json`、进度与交接文件。先检查已有代码，聚焦 F-04，再按执行证据更新状态。F-04 由实际 Zephyr 构建证明；F-08 单独要求 GitHub 运行 URL；F-05～F-07 必须由硬件证据证明。测试详情和未执行事项见 `TEST_RECORD.md`。
 
-本次完成的是可审查源码、自动化配置及云环境编译验证，不是完整硬件验收。Windows 无需安装 Zephyr：在浏览器运行 Actions、下载产物后由有设备的同学按实际 runner 配置烧录。未进行远程 push、未触发 GitHub Actions、未连接或烧录开发板。
+本次完成的是可审查源码、自动化配置及云环境编译验证，不是完整硬件验收。Windows 无需安装 Zephyr：在浏览器运行 Actions、下载产物后由有设备的同学按实际 runner 配置烧录。后续修复已推送原分支并更新 PR #1，GitHub Actions [41058064524](https://github.com/pomelo444/ESP32-DHT11-Harness/actions/runs/41058064524) 主机测试与固件构建已通过；仍未连接或烧录开发板。
+
+## West 首次初始化修复
+
+原脚本在 `west update` 前解析包含 import:true 的 manifest，冷环境缺少 Zephyr 时失败。现先读取 `.west/config` 检查实际 checkout 归属，下载 Zephyr 后才解析导入；保留 self.path:app 的默认语义。4 项真实 West 回归与一次全新 West/SDK 下载、全量构建已在 Codex 执行通过，GitHub 托管重跑也已成功，详见测试记录。

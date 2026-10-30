@@ -1,4 +1,4 @@
-> **零本地 Zephyr 安装方案**：打开 [ONLINE_NO_INSTALL_GUIDE.md](ONLINE_NO_INSTALL_GUIDE.md)，把本仓库上传 GitHub 后使用 Actions 云端构建。主机测试及 Codex 云环境固件编译已通过；GitHub Actions 配置已补齐，托管运行和硬件测试尚未执行。
+> **零本地 Zephyr 安装方案**：打开 [ONLINE_NO_INSTALL_GUIDE.md](ONLINE_NO_INSTALL_GUIDE.md)，把本仓库上传 GitHub 后使用 Actions 云端构建。主机测试及 Codex 云环境固件编译已通过；GitHub Actions 主机测试与固件编译已实际通过；硬件测试仍未执行。
 
 # ESP32 + Zephyr RTOS + DHT11 — Anthropic-style Harness Coursework
 
@@ -32,7 +32,7 @@ The script compiles the native serializer, runs C assertions, generates 3 clearl
 
 ## 4. Cloud build / physical verification
 
-**Windows 无需安装 Zephyr**：按 [浏览器操作指南](ONLINE_NO_INSTALL_GUIDE.md) 在 GitHub Actions 编译，下载测试日志和固件。工作流位于 `.github/workflows/cloud-check.yml`，Zephyr 固定为 v4.4.2，SDK 版本为 1.0.1。当前 Codex 云环境的实际成功构建记录见 [测试记录](docs/TEST_RECORD.md)；这不是 GitHub Actions 已运行的证明。
+**Windows 无需安装 Zephyr**：按 [浏览器操作指南](ONLINE_NO_INSTALL_GUIDE.md) 在 GitHub Actions 编译，下载测试日志和固件。工作流位于 `.github/workflows/cloud-check.yml`，Zephyr 固定为 v4.4.2，SDK 版本为 1.0.1。当前 Codex 云环境的实际成功构建记录见 [测试记录](docs/TEST_RECORD.md)；GitHub Actions 实际成功运行见 [41058064524](https://github.com/pomelo444/ESP32-DHT11-Harness/actions/runs/41058064524)。
 
 以下仅供已有 Linux Zephyr 开发环境的同学使用；编译不需要开发板，烧录才需要硬件和所有者批准：
 
@@ -78,7 +78,7 @@ On a sensor error, `temperature` and `humidity` become `null`, `status` is `ERRO
 
 ## 7. Scope boundary
 
-Zephyr v4.4.2 and SDK 1.0.1 were installed and firmware compilation passed in the Codex cloud environment. No physical ESP32 or DHT11 was connected. F-04 passes with build evidence; F-05–F-07 remain `passes=false`, and F-08 awaits a real GitHub Actions run. Do not submit synthetic UART fixture as photographed/real device evidence.
+Zephyr v4.4.2 and SDK 1.0.1 were installed and firmware compilation passed in the Codex cloud environment. No physical ESP32 or DHT11 was connected. F-04 passes with build evidence; F-05–F-07 remain `passes=false`, and F-08 passes with verified GitHub Actions run 41058064524. Do not submit synthetic UART fixture as photographed/real device evidence.
 
 ## 8. References
 

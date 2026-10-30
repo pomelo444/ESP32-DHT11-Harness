@@ -95,15 +95,16 @@
         "工作流配置通过静态检查",
         "在 GitHub Actions 中实际运行成功，保存运行 URL、提交 SHA 和固件产物"
       ],
-      "passes": false,
+      "passes": true,
       "evidence": [
         ".github/workflows/cloud-check.yml",
         "evidence/workflow_validation.log",
         "evidence/bootstrap_test.log",
         "evidence/cold_setup.log",
-        "evidence/cold_build.log"
+        "evidence/cold_build.log",
+        "evidence/github_actions.json"
       ],
-      "note": "PR #1 已创建；运行 41056844083 初始化失败。West 顺序修复已通过真实冷启动和固件构建，GitHub 托管重跑仍待验证。"
+      "note": "首次运行 41056844083 初始化失败；修复提交 8e51c0f3f03fa6367645551c3a942048aa4ab9cd 的运行 41058064524 两个 Job、SDK 设置、固件生成与上传均通过。运行 URL、步骤结论及三个远程 artifact 摘要已保存，硬件结果不由此推断。"
     }
   ]
 }
