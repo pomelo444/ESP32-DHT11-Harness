@@ -2,6 +2,10 @@
 # Linux CI bootstrap. Run with Python 3.12+, west 1.5.0, CMake, Ninja,
 # GCC, gperf, dtc, curl and xz installed. No hardware or flashing is used.
 set -euo pipefail
+if [ "$#" -gt 1 ] || { [ "$#" -eq 1 ] && [ "$1" != --init-only ]; }; then
+  echo 'Usage: bash scripts/setup_zephyr.sh [--init-only]' >&2
+  exit 2
+fi
 APP=$(cd "$(dirname "$0")/.." && pwd)
 WORKSPACE=$(dirname "$APP")
 cd "$APP"
@@ -12,12 +16,26 @@ if [ "$(west topdir)" != "$WORKSPACE" ]; then
   echo 'ERROR: expected an isolated West workspace in the parent directory' >&2
   exit 2
 fi
-if [ "$(realpath "$(west manifest --path)")" != "$APP/west.yml" ]; then
+# Do NOT resolve project imports yet: a cold workspace has no Zephyr checkout.
+# These config commands only read .west/config and do not load the manifest.
+manifest_path=$(west config --local manifest.path)
+manifest_file=$(west config --local manifest.file || echo west.yml)
+if [ "$(realpath -m "$WORKSPACE/$manifest_path/$manifest_file")" != "$APP/west.yml" ]; then
   echo 'ERROR: existing West workspace belongs to another manifest' >&2
   exit 2
 fi
+if [ "${1:-}" = --init-only ]; then
+  echo 'West workspace initialized and local manifest ownership checked (no imports resolved).'
+  exit 0
+fi
 west config manifest.project-filter -- '-.*,+zephyr,+hal_espressif,+hal_xtensa,+picolibc,+mbedtls'
 west update zephyr --fetch-opt=--depth=1 --fetch-opt=--no-tags
+# Zephyr's west.yml is available now; full imported-manifest validation is safe.
+resolved_manifest=$(west manifest --path)
+if [ "$(realpath "$resolved_manifest")" != "$APP/west.yml" ]; then
+  echo 'ERROR: resolved manifest does not match this application' >&2
+  exit 2
+fi
 # Exact SHAs matter: fetching only shallow branch tips can omit pinned commits.
 python3 - <<'PY'
 from pathlib import Path

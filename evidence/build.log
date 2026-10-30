@@ -1,5 +1,4 @@
-UTC run: 2026-10-30T12:14:56Z
-Execution: Codex cloud Linux; not a GitHub Actions run
+Execution: Codex cloud Linux; West initialization fix verification, not a GitHub Actions run
 Target: esp32_devkitc/esp32/procpu
 v4.4.2
 1.0.1
@@ -25,8 +24,8 @@ No change to Kconfig header in '/workspace/.build/esp32-dht11/zephyr/include/gen
 -- Espressif HAL path: /workspace/modules/hal/espressif
 -- Image partition address: 0x1000
 -- Found gen_kobject_list: /workspace/zephyr/scripts/build/gen_kobject_list.py
--- Configuring done (15.0s)
--- Generating done (0.6s)
+-- Configuring done (12.5s)
+-- Generating done (0.5s)
 -- Build files have been written to: /workspace/.build/esp32-dht11
 -- west build: building application
 [1/148] Generating include/generated/zephyr/version.h

@@ -98,9 +98,12 @@
       "passes": false,
       "evidence": [
         ".github/workflows/cloud-check.yml",
-        "evidence/workflow_validation.log"
+        "evidence/workflow_validation.log",
+        "evidence/bootstrap_test.log",
+        "evidence/cold_setup.log",
+        "evidence/cold_build.log"
       ],
-      "note": "配置及脚本已验证；尚未推送或触发 GitHub Actions，不将 Codex 云端构建冒充 GitHub 托管运行结果。"
+      "note": "PR #1 已创建；运行 41056844083 初始化失败。West 顺序修复已通过真实冷启动和固件构建，GitHub 托管重跑仍待验证。"
     }
   ]
 }

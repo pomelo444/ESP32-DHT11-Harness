@@ -1,0 +1,212 @@
+=== Initializing from existing manifest repository coursework-checkout
+--- Creating /tmp/esp32-cold-FzETNd/.west and local configuration file
+=== Initialized. Now run "west update" inside /tmp/esp32-cold-FzETNd.
+=== updating zephyr (zephyr):
+--- zephyr: initializing
+Initialized empty Git repository in /tmp/esp32-cold-FzETNd/zephyr/.git/
+--- zephyr: fetching, need revision v4.4.2
+From https://github.com/zephyrproject-rtos/zephyr
+ * tag                 v4.4.2     -> FETCH_HEAD
+HEAD is now at dccb0959 release: Zephyr 4.4.2
+HEAD is now at dccb0959 release: Zephyr 4.4.2
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /tmp/esp32-cold-FzETNd/modules/hal/espressif/.git/
+From https://github.com/zephyrproject-rtos/hal_espressif
+ * branch            f07465053c0f24aa254d9fdfd559f06879221073 -> FETCH_HEAD
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /tmp/esp32-cold-FzETNd/modules/hal/xtensa/.git/
+From https://github.com/zephyrproject-rtos/hal_xtensa
+ * branch            0495a1afd300b644d3ec8dd2c3bd11007e69a892 -> FETCH_HEAD
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /tmp/esp32-cold-FzETNd/modules/lib/picolibc/.git/
+From https://github.com/zephyrproject-rtos/picolibc
+ * branch            01254932e8e81085817ed61fd858648584ffe37c -> FETCH_HEAD
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /tmp/esp32-cold-FzETNd/modules/crypto/mbedtls/.git/
+From https://github.com/zephyrproject-rtos/mbedtls
+ * branch            a3e190fe44c78d1ba67f55979e1257328cc7d0d8 -> FETCH_HEAD
+=== updating zephyr (zephyr):
+--- zephyr: fetching, need revision v4.4.2
+From https://github.com/zephyrproject-rtos/zephyr
+ * tag                 v4.4.2     -> FETCH_HEAD
+HEAD is now at dccb0959 release: Zephyr 4.4.2
+=== updating hal_espressif (modules/hal/espressif):
+HEAD is now at f074650 zephyr: module: source cmake and kconfig from the hal tree
+HEAD is now at f074650 zephyr: module: source cmake and kconfig from the hal tree
+=== updating hal_xtensa (modules/hal/xtensa):
+HEAD is now at 0495a1a zephyr/soc: Add SoC layer for mt8365
+HEAD is now at 0495a1a zephyr/soc: Add SoC layer for mt8365
+=== updating mbedtls (modules/crypto/mbedtls):
+HEAD is now at a3e190f [zep noup] delete .github/pull_request_template.md
+HEAD is now at a3e190f [zep noup] delete .github/pull_request_template.md
+=== updating picolibc (modules/lib/picolibc):
+HEAD is now at 0125493 tinystdio: Avoid all use of float/double types in vfprintf
+HEAD is now at 0125493 tinystdio: Avoid all use of float/double types in vfprintf
+Ignoring windows-curses: markers 'sys_platform == "win32"' don't match your environment
+Requirement already satisfied: pyelftools>=0.29 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 7)) (0.33)
+Requirement already satisfied: PyYAML>=6.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 11)) (6.0.3)
+Requirement already satisfied: pykwalify in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 14)) (1.8.0)
+Requirement already satisfied: jsonschema in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 15)) (4.26.0)
+Requirement already satisfied: canopen in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 18)) (2.4.1)
+Requirement already satisfied: packaging in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 19)) (26.3)
+Requirement already satisfied: patool>=2.0.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 20)) (4.1.0)
+Requirement already satisfied: psutil>=5.6.6 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 21)) (7.2.2)
+Requirement already satisfied: pylink-square in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 22)) (2.0.2)
+Requirement already satisfied: pyserial in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 23)) (3.5)
+Requirement already satisfied: requests>=2.32.4 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 24)) (2.34.2)
+Requirement already satisfied: semver in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 25)) (3.1.0)
+Requirement already satisfied: tqdm>=4.67.1 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 26)) (4.70.1)
+Requirement already satisfied: reuse>=6.0.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 27)) (6.2.0)
+Requirement already satisfied: anytree in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 30)) (2.13.0)
+Requirement already satisfied: intelhex in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 33)) (2.3.0)
+Requirement already satisfied: west>=0.14.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 37)) (1.5.0)
+Requirement already satisfied: esptool>=5.2.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from -r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (5.6.0)
+Requirement already satisfied: docopt>=0.6.2 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from pykwalify->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 14)) (0.6.2)
+Requirement already satisfied: python-dateutil>=2.8.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from pykwalify->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 14)) (3.0.0)
+Requirement already satisfied: ruamel.yaml>=0.16.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from pykwalify->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 14)) (0.19.1)
+Requirement already satisfied: attrs>=22.2.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from jsonschema->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 15)) (26.1.0)
+Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from jsonschema->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 15)) (2025.9.1)
+Requirement already satisfied: referencing>=0.28.4 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from jsonschema->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 15)) (0.37.0)
+Requirement already satisfied: rpds-py>=0.25.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from jsonschema->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 15)) (2026.9.1)
+Requirement already satisfied: python-can>=3.0.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from canopen->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 18)) (4.6.1)
+Requirement already satisfied: six in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from pylink-square->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 22)) (1.17.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from requests>=2.32.4->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 24)) (3.5.2)
+Requirement already satisfied: idna<4,>=2.5 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from requests>=2.32.4->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 24)) (3.20)
+Requirement already satisfied: urllib3<3,>=1.26 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from requests>=2.32.4->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 24)) (2.8.0)
+Requirement already satisfied: certifi>=2023.5.7 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from requests>=2.32.4->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 24)) (2026.10.23)
+Requirement already satisfied: Jinja2>=3.0.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from reuse>=6.0.0->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 27)) (3.1.6)
+Requirement already satisfied: click>=8.1 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from reuse>=6.0.0->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 27)) (8.5.0)
+Requirement already satisfied: license-expression>=21.6.14 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from reuse>=6.0.0->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 27)) (30.4.4)
+Requirement already satisfied: python-debian>=0.1.48 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from reuse>=6.0.0->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 27)) (1.1.1)
+Requirement already satisfied: python-magic>=0.4.12 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from reuse>=6.0.0->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 27)) (0.4.27)
+Requirement already satisfied: tomlkit>=0.8 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from reuse>=6.0.0->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 27)) (0.15.2)
+Requirement already satisfied: colorama in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from west>=0.14.0->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 37)) (0.4.6)
+Requirement already satisfied: cryptography>=43.0.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from esptool>=5.2.0->-r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (50.0.2)
+Requirement already satisfied: reedsolo<1.8,>=1.5.3 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from esptool>=5.2.0->-r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (1.7.0)
+Requirement already satisfied: rich_click<2 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from esptool>=5.2.0->-r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (1.9.9)
+Requirement already satisfied: esp-pylib>=1.0.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from esp-pylib[cli,ide,serial]>=1.0.0->esptool>=5.2.0->-r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (1.2.0)
+Requirement already satisfied: cffi>=2.0.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from cryptography>=43.0.0->esptool>=5.2.0->-r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (2.1.1)
+Requirement already satisfied: rich in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from esp-pylib>=1.0.0->esp-pylib[cli,ide,serial]>=1.0.0->esptool>=5.2.0->-r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (15.0.0)
+Requirement already satisfied: websockets>=12.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from esp-pylib[cli,ide,serial]>=1.0.0->esptool>=5.2.0->-r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (17.3)
+Requirement already satisfied: MarkupSafe>=2.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from Jinja2>=3.0.0->reuse>=6.0.0->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 27)) (3.0.4)
+Requirement already satisfied: boolean.py>=4.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from license-expression>=21.6.14->reuse>=6.0.0->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 27)) (5.0)
+Requirement already satisfied: wrapt~=1.10 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from python-can>=3.0.0->canopen->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 18)) (1.17.3)
+Requirement already satisfied: typing_extensions>=3.10.0.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from python-can>=3.0.0->canopen->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 18)) (4.16.0)
+Requirement already satisfied: tzdata in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from python-dateutil>=2.8.0->pykwalify->-r /tmp/esp32-cold-FzETNd/zephyr/scripts/requirements-base.txt (line 14)) (2026.6)
+Requirement already satisfied: pycparser in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from cffi>=2.0.0->cryptography>=43.0.0->esptool>=5.2.0->-r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (3.12)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from rich->esp-pylib>=1.0.0->esp-pylib[cli,ide,serial]>=1.0.0->esptool>=5.2.0->-r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (4.2.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from rich->esp-pylib>=1.0.0->esp-pylib[cli,ide,serial]>=1.0.0->esptool>=5.2.0->-r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (2.21.0)
+Requirement already satisfied: mdurl~=0.1 in /workspace/.venvs/esp32-zephyr/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich->esp-pylib>=1.0.0->esp-pylib[cli,ide,serial]>=1.0.0->esptool>=5.2.0->-r /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/requirements.txt (line 1)) (0.1.2)
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+zephyr-sdk-1.0.1_linux-x86_64_minimal.tar.xz: OK
+toolchain_gnu_linux-x86_64_xtensa-espressif_esp32_zephyr-elf.tar.xz: OK
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c5/libble_app.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c6/libble_app.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c2/libble_app.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32h2/libble_app.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c3/libbtdm_app.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s3/libbtdm_app.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32/libbtdm_app.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32/libcore.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32/libnet80211.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32/libpp.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c2/libcore.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c2/libnet80211.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c2/libpp.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c3/libcore.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c3/libmesh.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c3/libnet80211.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c3/libpp.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c5/libcore.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c5/libmesh.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c5/libnet80211.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c5/libpp.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c6/libcore.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c6/libmesh.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c6/libnet80211.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c6/libpp.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s2/libcore.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s2/libnet80211.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s2/libpp.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s3/libcore.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s3/libnet80211.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s3/libpp.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32/libphy.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32/librtc.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c2/libbtbb.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c2/libphy.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c3/libbtbb.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c3/libphy.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c5/libbtbb.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c5/libphy.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c6/libbtbb.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c6/libphy.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32h2/libbtbb.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32h2/libphy.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s2/libphy.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s3/libbtbb.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s3/libphy.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32/libcoexist.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c2/libcoexist.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c3/libcoexist.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c5/libcoexist.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32c6/libcoexist.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32h2/libcoexist.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s2/libcoexist.a
+Fetching blob hal_espressif: /tmp/esp32-cold-FzETNd/modules/hal/espressif/zephyr/blobs/lib/esp32s3/libcoexist.a
+No broken requirements found.
+Zephyr: dccb0959
+SDK: 1.0.1
+ZEPHYR_BASE=/tmp/esp32-cold-FzETNd/zephyr
+ZEPHYR_TOOLCHAIN_VARIANT=zephyr
+ZEPHYR_SDK_INSTALL_DIR=/tmp/esp32-cold-FzETNd/.zephyr-sdk/zephyr-sdk-1.0.1

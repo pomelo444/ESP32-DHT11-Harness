@@ -19,7 +19,7 @@ test_uint32_wrap (test_receiver.ReceiverTests.test_uint32_wrap) ... ok
 test_wrong_unit (test_receiver.ReceiverTests.test_wrong_unit) ... ok
 
 ----------------------------------------------------------------------
-Ran 18 tests in 0.278s
+Ran 18 tests in 0.257s
 
 OK
 {"device": "ESP32-DHT11", "seq": 1, "uptime_ms": 100, "temperature": 25.6, "temperature_unit": "C", "humidity": 62.0, "humidity_unit": "%RH", "status": "OK", "error_code": 0}

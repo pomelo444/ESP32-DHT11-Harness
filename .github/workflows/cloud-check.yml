@@ -56,12 +56,16 @@ jobs:
           python-version: '3.12'
       - name: Install Linux build tools
         run: |
-          rm -f evidence/setup.log evidence/build.log
+          rm -f evidence/setup.log evidence/build.log evidence/bootstrap_test.log
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends gcc g++ gperf device-tree-compiler make curl xz-utils
           python3 -m venv "$RUNNER_TEMP/zephyr-venv"
           "$RUNNER_TEMP/zephyr-venv/bin/python" -m pip install west==1.5.0 cmake==4.4.4 ninja==1.13.2
           echo "$RUNNER_TEMP/zephyr-venv/bin" >> "$GITHUB_PATH"
+      - name: Test cold West workspace initialization
+        run: |
+          set -euo pipefail
+          python3 scripts/test_west_bootstrap.py 2>&1 | tee evidence/bootstrap_test.log
       - name: Set up pinned Zephyr and ESP32 SDK
         run: |
           set -euo pipefail
@@ -85,6 +89,7 @@ jobs:
         with:
           name: esp32-build-evidence
           path: |
+            evidence/bootstrap_test.log
             evidence/setup.log
             evidence/build.log
           retention-days: 14

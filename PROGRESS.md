@@ -12,7 +12,7 @@
 
 ## 未完成 / 不得视为通过
 
-- F-08：GitHub Actions 尚未实际运行，没有运行 URL；静态检查和 Codex 构建不等于 GitHub 托管执行成功。
+- F-08：GitHub Actions 运行 41056844083 在初始化阶段失败；当前修复已通过本地冷启动和固件构建，等待修复提交的远程重跑。
 - F-05～F-07：未连接实物、未烧录、未核实接线、未实采 UART、未做断线或队列压力测试，继续 `passes=false`。
 - 采样实现是每次读取后 `k_sleep(3000ms)`，包含读取与调度开销；不是严格实时 3000ms 周期。真实周期仍待测量。
 
@@ -24,3 +24,11 @@
 4. 收集至少 10 条真实 UART 记录，检查状态、序号、3000～3500ms 周期，再做受控断线测试，逐项更新 F-05～F-07。
 
 中文总结：`docs/DEVELOPMENT_SUMMARY.md`；测试说明：`docs/TEST_RECORD.md`。所有模拟数据只证明主机协议路径。
+
+## PR #1：West 首次初始化修复
+
+- 原失败运行：https://github.com/pomelo444/ESP32-DHT11-Harness/actions/runs/41056844083 。
+- 根因：在 Zephyr 尚未下载时运行 `west manifest --path`，触发 `import: true` 解析失败；空输出导致 realpath 二次报错。
+- 修复：先以 `.west/config` 的 manifest.path/file 检查归属，`west update zephyr` 后才解析完整 manifest。`self.path: app` 保留，`west init -l` 会记录实际 checkout 名。
+- 实际通过：4 个真实 West 冷启动回归、原有 18 个 Python 测试及 C 断言、现有 workspace 构建；另外在 /tmp 全新 workspace 重新下载 Zephyr、SDK/ESP32 工具链（官方 SHA-256 均通过）、blobs 并完成全量固件编译。Python 虚拟环境与主机工具复用，无硬件测试。
+- 新证据：`evidence/bootstrap_test.log`、`evidence/cold_setup.log`、`evidence/cold_build.log`。GitHub 托管重跑尚待确认，F-08 仍为 false。
