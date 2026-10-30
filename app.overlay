@@ -1,0 +1,13 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
+/ {
+    aliases {
+        dht0 = &dht11_sensor;
+    };
+
+    dht11_sensor: dht11_sensor {
+        compatible = "aosong,dht";
+        dio-gpios = <&gpio0 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        status = "okay";
+    };
+};

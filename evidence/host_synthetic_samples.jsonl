@@ -1,0 +1,3 @@
+{"device":"ESP32-DHT11","seq":1,"uptime_ms":100,"temperature":25.60,"temperature_unit":"C","humidity":62.00,"humidity_unit":"%RH","status":"OK","error_code":0}
+{"device":"ESP32-DHT11","seq":2,"uptime_ms":3100,"temperature":25.80,"temperature_unit":"C","humidity":61.50,"humidity_unit":"%RH","status":"OK","error_code":0}
+{"device":"ESP32-DHT11","seq":3,"uptime_ms":6100,"temperature":null,"temperature_unit":"C","humidity":null,"humidity_unit":"%RH","status":"ERROR","error_code":-5}

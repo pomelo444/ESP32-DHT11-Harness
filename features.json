@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "method": "Anthropic-style initializer/coding agent",
+  "features": [
+    {
+      "id": "F-01",
+      "description": "建立项目结构、Harness 规则、运行脚本与交接文件",
+      "acceptance": [
+        "必需目录和文档存在",
+        "README 给出复现命令"
+      ],
+      "passes": true,
+      "evidence": [
+        "AGENTS.md",
+        "init.sh",
+        "README.md",
+        "docs/DECISIONS.md"
+      ]
+    },
+    {
+      "id": "F-02",
+      "description": "将传感器读数和错误转换为合法 JSON Lines",
+      "acceptance": [
+        "C 主机单元断言通过",
+        "测试 OK、ERROR、负温度、越界缓冲区"
+      ],
+      "passes": true,
+      "evidence": [
+        "evidence/host_test_run.log",
+        "tests/test_json_report.c"
+      ]
+    },
+    {
+      "id": "F-03",
+      "description": "Python 接收器校验 JSON 字段、单位和错误路径",
+      "acceptance": [
+        "10 个 Python 单元测试通过",
+        "主机 C 生成的 3 条模拟 JSONL 可以被 Python 接收"
+      ],
+      "passes": true,
+      "evidence": [
+        "evidence/host_test_run.log",
+        "evidence/host_synthetic_samples.jsonl",
+        "evidence/offline_replay.log"
+      ]
+    },
+    {
+      "id": "F-04",
+      "description": "Zephyr 在 ESP32 DevKitC 目标上构建成功",
+      "acceptance": [
+        "west build 返回成功",
+        "保存构建日志和 Zephyr 版本"
+      ],
+      "passes": false,
+      "evidence": []
+    },
+    {
+      "id": "F-05",
+      "description": "DHT11 实物温湿度读取和 3 秒周期",
+      "acceptance": [
+        "接线照片与 GPIO18 现场核实",
+        "10 条实采 JSON 记录，观测周期符合容差"
+      ],
+      "passes": false,
+      "evidence": []
+    },
+    {
+      "id": "F-06",
+      "description": "真实系统的双线程和 Queue 工作正常",
+      "acceptance": [
+        "串口实采证明序号和消息输出连续",
+        "验证队列满时行为或说明无法构造负载"
+      ],
+      "passes": false,
+      "evidence": []
+    },
+    {
+      "id": "F-07",
+      "description": "ERROR 路径真实硬件验证",
+      "acceptance": [
+        "断开传感器 DATA 后观察 null + ERROR + 负错误码",
+        "保存真实串口原始记录"
+      ],
+      "passes": false,
+      "evidence": []
+    }
+  ]
+}
